@@ -158,48 +158,59 @@ VK_CODE = {
 
 
 def _key_up(key): 
+    global driver
     driver.KeyDown(VK_CODE[key])
 
-def _key_down(key): 
+def _key_down(key):
+    global driver
     driver.KeyUp(VK_CODE[key])
 
 def _left_button_down():
+    global driver
     driver.MouseLeftButtonDown()
 
 def _left_button_up():
+    global driver
     driver.MouseLeftButtonUp()
 
 def _right_button_down():
+    global driver
     driver.MouseRightButtonDown()
 
 def _right_button_up():
+    global driver
     driver.MouseRightButtonUp()
 
 def _middle_button_down():
+    global driver
     driver.MouseMiddleButtonDown()
 
 def _middle_button_up():
+    global driver
     driver.MouseMiddleButtonUp()
 
 def _move_rel(x, y):
+    global driver
     driver.MouseMoveRELATIVE(x,y)
 
 def _move_to(x, y):
+    global driver
     driver.MouseMoveABSOLUTE(x,y)
 
 def load_driver():
+    global driver
     driver = CDLL(dll_path)
     driver.LoadNTDriver('kmclass',driver_path)
     driver.SetHandle()
 
 def unload_driver():
+    global driver
     driver.UnloadNTDriver('kmclass')
 
 
 if __name__ == '__main__' : 
 
     load_driver()
-
     _key_down('b')
     _key_up('b')
     _move_rel(111,44)
