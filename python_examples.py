@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 from ctypes import CDLL
 
-driver = None
 
+dll_path = 'D:\\gitRepo\\kmclassdll\\x64\\Debug\\kmclassdll.dll'
+driver_path = b'D:\\gitRepo\\kmclass\\x64\\Debug\\kmclass.sys'
+
+
+driver = None
 VK_CODE = {
     'backspace': 0x08,
     'tab': 0x09,
@@ -184,8 +188,8 @@ def _move_to(x, y):
     driver.MouseMoveABSOLUTE(x,y)
 
 def load_driver():
-    driver = CDLL('D:\\gitRepo\\kmclassdll\\x64\\Debug\\kmclassdll.dll')
-    driver.LoadNTDriver('kmclass',b'D:\\gitRepo\\kmclass\\x64\\Debug\\kmclass.sys')
+    driver = CDLL(dll_path)
+    driver.LoadNTDriver('kmclass',driver_path)
     driver.SetHandle()
 
 def unload_driver():
